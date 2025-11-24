@@ -1,4 +1,4 @@
-# tres geojson 3d
+# geojson 3d renderer
 
 A versatile 3D GeoJSON visualization library compatible with Three.js, Vue.js + Three.js, and TresJS environments. Provides Vue components, hooks, and utility functions for rendering GeoJSON data in 3D space.
 
@@ -13,11 +13,11 @@ A versatile 3D GeoJSON visualization library compatible with Three.js, Vue.js + 
 ## Installation
 
 ```bash
-npm install tres-geojson-3d
+npm install geojson-3d-renderer
 # or
-yarn add tres-geojson-3d
+yarn add geojson-3d-renderer
 # or
-pnpm add tres-geojson-3d
+pnpm add geojson-3d-renderer
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ pnpm add tres-geojson-3d
 <script setup>
 import { TresCanvas, TresPerspectiveCamera } from '@tresjs/core'
 import { OrbitControls } from '@tresjs/cientos'
-import { GeoJson } from 'tres-geojson-3d'
+import { GeoJson } from 'geojson-3d-renderer'
 </script>
 ```
 
@@ -75,7 +75,7 @@ import {
   TresLineSegments,
 } from '@tresjs/core'
 import { OrbitControls } from '@tresjs/cientos'
-import { useGeojson } from 'tres-geojson-3d'
+import { useGeojson } from 'geojson-3d-renderer'
 
 const { mergedShapeGeometry: shapeGeometry, mergedLineGeometry: lineGeometry } = useGeojson(
   'https://geo.datav.aliyun.com/areas_v3/bound/100000_full_city.json',
@@ -92,7 +92,7 @@ const { mergedShapeGeometry: shapeGeometry, mergedLineGeometry: lineGeometry } =
 ### Utility Function
 
 ```javascript
-import { genGeojsonGeometry } from 'tres-geojson-3d/utils'
+import { genGeojsonGeometry } from 'geojson-3d-renderer/utils'
 
 const { mergedShapeGeometry, mergedLineGeometry } = await genGeojsonGeometry(
   'https://geo.datav.aliyun.com/areas_v3/bound/100000_full_city.json',
