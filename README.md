@@ -1,6 +1,10 @@
 # geojson 3d renderer
 
-A versatile 3D GeoJSON visualization library compatible with Three.js, Vue.js + Three.js, and TresJS environments. Provides Vue components, hooks, and utility functions for rendering GeoJSON data in 3D space.
+A versatile 3D GeoJSON visualization library compatible with Three.js, Vue.js + Three.js, and TresJS environments. Provides Vue components, hooks, and utility functions for rendering GeoJSON data in 3D space with customizable materials.
+
+[中文文档](README_CN.md)
+
+[DEMO](https://llcci.github.io/geojson-3d-renderer-demo/)
 
 ## Features
 
@@ -23,6 +27,8 @@ pnpm add geojson-3d-renderer
 ## Usage
 
 ### Vue Component
+
+> Requires Vue.js, Three.js, and TresJS environments
 
 ```vue
 <template>
@@ -48,7 +54,40 @@ import { GeoJson } from 'geojson-3d-renderer'
 </script>
 ```
 
+#### Props
+
+| name             | type             | default | required | description                                      |
+| ---------------- | ---------------- | ------- | -------- | ------------------------------------------------ |
+| `url`            | string           |         | true     | GeoJSON file URL                                 |
+| `mercatorCenter` | [number, number] |         | true     | Mercator projection center coordinates           |
+| `options`        | Options          |         | false    | Configuration options（See [Options](#options)） |
+
+#### Events
+
+| name             | type                                                                                    | description                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `geojson-error`  | any                                                                                     | Triggered when GeoJSON loading encounters an error                           |
+| `geojson-result` | { mergedShapeGeometry: THREE.BufferGeometry, mergedLineGeometry: THREE.BufferGeometry } | Triggered when GeoJSON loading is successful, containing the merged geometry |
+
+#### Slots
+
+| name            | description                                    |
+| --------------- | ---------------------------------------------- |
+| `default`       | Custom content slot for additional elements    |
+| `shapeGeometry` | Custom shape mesh slot for additional elements |
+| `lineGeometry`  | Custom line mesh slot for additional elements  |
+
+#### Exposes
+
+| name           | type     | description                                            |
+| -------------- | -------- | ------------------------------------------------------ |
+| `isGeneration` | boolean  | Indicates if the geometry is currently being generated |
+| `execute`      | ()=>void | Trigger the geometry generation process                |
+| `dispose`      | ()=>void | Dispose resources and geometries                       |
+
 ### Composition API
+
+> Requires Vue.js, Three.js environments
 
 ```vue
 <template>
@@ -89,7 +128,30 @@ const { mergedShapeGeometry: shapeGeometry, mergedLineGeometry: lineGeometry } =
 </script>
 ```
 
+#### Parameters
+
+| name             | type             | default | required | description                                      |
+| ---------------- | ---------------- | ------- | -------- | ------------------------------------------------ |
+| `url`            | string           |         | true     | GeoJSON file URL                                 |
+| `mercatorCenter` | [number, number] |         | true     | Mercator projection center coordinates           |
+| `options`        | Options          |         | false    | Configuration options（See [Options](#options)） |
+
+#### Returns
+
+| name                  | type                                                                                                      | description                                            |
+| --------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `mergedShapeGeometry` | THREE.BufferGeometry                                                                                      | Merged shape geometry for fill rendering               |
+| `mergedLineGeometry`  | THREE.BufferGeometry                                                                                      | Merged line geometry for line rendering                |
+| `isGeneration`        | boolean                                                                                                   | Whether the geometry is currently being generated      |
+| `onResult`            | (result: { mergedShapeGeometry: THREE.BufferGeometry, mergedLineGeometry: THREE.BufferGeometry }) => void | Callback function when geometry generation is complete |
+
+| `onError` | (error: any) => void | Callback function when geometry generation encounters an error |
+| `dispose` | ()=>void | Dispose resources and geometries |
+| `execute` | ()=>void | Trigger the geometry generation process |
+
 ### Utility Function
+
+> Requires Three.js environment
 
 ```javascript
 import { genGeojsonGeometry } from 'geojson-3d-renderer/utils'
@@ -105,30 +167,33 @@ const { mergedShapeGeometry, mergedLineGeometry } = await genGeojsonGeometry(
 )
 ```
 
-## API Reference
+#### Parameters
 
-### GeoJson Component Props
+| name             | type             | default | required | description                                      |
+| ---------------- | ---------------- | ------- | -------- | ------------------------------------------------ |
+| `url`            | string           |         | true     | GeoJSON file URL                                 |
+| `mercatorCenter` | [number, number] |         | true     | Mercator projection center coordinates           |
+| `options`        | Options          |         | false    | Configuration options（See [Options](#options)） |
 
-- `url` (string): GeoJSON file URL
-- `mercatorCenter` ([number, number]): Mercator projection center coordinates
-- `options` (Options): Configuration options
+#### Returns
 
-### useGeojson Hook
+| name                  | type                 | description                              |
+| --------------------- | -------------------- | ---------------------------------------- |
+| `mergedShapeGeometry` | THREE.BufferGeometry | Merged shape geometry for fill rendering |
+| `mergedLineGeometry`  | THREE.BufferGeometry | Merged line geometry for line rendering  |
 
-Returns reactive geometry objects and event handlers.
+## Options
 
-### Options
-
-```typescript
-interface Options {
-  mercatorScale: number // Mercator projection scale (default: 30)
-  mercatorTranslate: [number, number] // Translation offset (default: [0, 0])
-  extrudeDepth: number // Geometry extrusion depth (default: 1)
-  lineOffset: number // Line offset above geometry (default: 0.01)
-  needShapeGeometry?: boolean // Generate shape geometry (default: true)
-  needLineGeometry?: boolean // Generate line geometry (default: true)
-}
-```
+| name                | type             | default | description                                                                                              |
+| ------------------- | ---------------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| `mercatorScale`     | number           | 30      | Mercator projection scale                                                                                |
+| `mercatorTranslate` | [number, number] | [0, 0]  | Translation offset                                                                                       |
+| `extrudeDepth`      | number           | 1       | Geometry extrusion depth                                                                                 |
+| `lineOffset`        | number           | 0.01    | Line offset above geometry                                                                               |
+| `needShapeGeometry` | boolean          | true    | Whether to generate fill geometry                                                                        |
+| `needLineGeometry`  | boolean          | true    | Whether to generate line geometry                                                                        |
+| `refresh`           | boolean          | false   | Refresh on change, only applicable to Composition API and Vue Component, and parameters must be reactive |
+| `immediate`         | boolean          | true    | Load immediately, only applicable to Composition API and Vue Component                                   |
 
 ## License
 
