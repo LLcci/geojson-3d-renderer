@@ -66,16 +66,25 @@ const url = computed(() => props.url)
 const mercatorCenter = computed(() => props.mercatorCenter)
 const options = computed(() => props.options)
 
-const { mergedShapeGeometry, mergedLineGeometry, onResult, onError } = useGeojson(
-  url,
-  mercatorCenter,
-  options
-)
+const {
+  mergedShapeGeometry,
+  mergedLineGeometry,
+  onResult,
+  onError,
+  isGeneration,
+  execute,
+  dispose,
+} = useGeojson(url, mercatorCenter, options)
 onResult((result) => {
   emit('geojson-result', result)
 })
 onError((error) => {
   emit('geojson-error', error)
+})
+defineExpose({
+  isGeneration,
+  execute,
+  dispose,
 })
 </script>
 
