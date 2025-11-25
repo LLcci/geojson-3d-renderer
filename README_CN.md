@@ -54,11 +54,11 @@ import { GeoJson } from 'geojson-3d-renderer'
 
 #### 属性 (Props)
 
-| 属性名           | 类型             | 默认值 | 是否必需 | 描述                          |
-| ---------------- | ---------------- | ------ | -------- | ----------------------------- |
-| `url`            | string           | -      | 是       | GeoJSON 文件 URL              |
-| `mercatorCenter` | [number, number] | -      | 是       | 墨卡托投影中心坐标            |
-| `options`        | Options          | -      | 否       | 配置选项（详见[选项](#选项)） |
+| 属性名           | 类型             | 默认值 | 是否必需 | 描述                                |
+| ---------------- | ---------------- | ------ | -------- | ----------------------------------- |
+| `url`            | string           | -      | 是       | GeoJSON 文件 URL                    |
+| `mercatorCenter` | [number, number] | -      | 是       | 墨卡托投影中心坐标                  |
+| `options`        | Options          | -      | 否       | 配置选项（详见[Options](#options)） |
 
 #### 事件 (Events)
 
@@ -128,11 +128,11 @@ const { mergedShapeGeometry: shapeGeometry, mergedLineGeometry: lineGeometry } =
 
 #### 参数 (Parameters)
 
-| 参数名           | 类型             | 默认值 | 是否必需 | 描述                          |
-| ---------------- | ---------------- | ------ | -------- | ----------------------------- |
-| `url`            | string           | -      | 是       | GeoJSON 文件 URL              |
-| `mercatorCenter` | [number, number] | -      | 是       | 墨卡托投影中心坐标            |
-| `options`        | Options          | -      | 否       | 配置选项（详见[选项](#选项)） |
+| 参数名           | 类型             | 默认值 | 是否必需 | 描述                                |
+| ---------------- | ---------------- | ------ | -------- | ----------------------------------- |
+| `url`            | string           | -      | 是       | GeoJSON 文件 URL                    |
+| `mercatorCenter` | [number, number] | -      | 是       | 墨卡托投影中心坐标                  |
+| `options`        | Options          | -      | 否       | 配置选项（详见[Options](#options)） |
 
 #### 返回值 (Returns)
 
@@ -166,11 +166,11 @@ const { mergedShapeGeometry, mergedLineGeometry } = await genGeojsonGeometry(
 
 #### 参数 (Parameters)
 
-| 参数名           | 类型             | 默认值 | 是否必需 | 描述                          |
-| ---------------- | ---------------- | ------ | -------- | ----------------------------- |
-| `url`            | string           | -      | 是       | GeoJSON 文件 URL              |
-| `mercatorCenter` | [number, number] | -      | 是       | 墨卡托投影中心坐标            |
-| `options`        | Options          | -      | 否       | 配置选项（详见[选项](#选项)） |
+| 参数名           | 类型             | 默认值 | 是否必需 | 描述                                |
+| ---------------- | ---------------- | ------ | -------- | ----------------------------------- |
+| `url`            | string           | -      | 是       | GeoJSON 文件 URL                    |
+| `mercatorCenter` | [number, number] | -      | 是       | 墨卡托投影中心坐标                  |
+| `options`        | Options          | -      | 否       | 配置选项（详见[Options](#options)） |
 
 #### 返回值 (Returns)
 
@@ -179,7 +179,7 @@ const { mergedShapeGeometry, mergedLineGeometry } = await genGeojsonGeometry(
 | `mergedShapeGeometry` | THREE.BufferGeometry | 用于填充渲染的合并形状几何体 |
 | `mergedLineGeometry`  | THREE.BufferGeometry | 用于线条渲染的合并线几何体   |
 
-## 选项 (Options)
+## Options
 
 | 选项名              | 类型             | 默认值 | 描述                                                                 |
 | ------------------- | ---------------- | ------ | -------------------------------------------------------------------- |
