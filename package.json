@@ -1,6 +1,6 @@
 {
   "name": "geojson-3d-renderer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A versatile 3D GeoJSON visualization library compatible with Three.js, Vue.js + Three.js, and TresJS environments. Provides Vue components, hooks, and utility functions for rendering GeoJSON data in 3D space.",
   "type": "module",
   "main": "dist/index.js",
